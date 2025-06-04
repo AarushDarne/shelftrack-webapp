@@ -1,0 +1,128 @@
+import { Book, BookStatus, BookCondition, User, Role, School } from '../types';
+
+// Mock books data
+export const mockBooks: Book[] = Array.from({ length: 20 }, (_, i) => ({
+  id: `book-${i + 1}`,
+  title: [
+    'To Kill a Mockingbird',
+    'The Great Gatsby',
+    '1984',
+    'Pride and Prejudice',
+    'The Catcher in the Rye',
+    'Animal Farm',
+    'Lord of the Flies',
+    'The Hobbit',
+    'Fahrenheit 451',
+    'Jane Eyre',
+  ][i % 10],
+  author: [
+    'Harper Lee',
+    'F. Scott Fitzgerald',
+    'George Orwell',
+    'Jane Austen',
+    'J.D. Salinger',
+    'George Orwell',
+    'William Golding',
+    'J.R.R. Tolkien',
+    'Ray Bradbury',
+    'Charlotte Brontë',
+  ][i % 10],
+  isbn: `978-1-${i + 100}-${i + 200}-${i + 300}`,
+  publisher: [
+    'Penguin Random House',
+    'HarperCollins',
+    'Simon & Schuster',
+    'Macmillan Publishers',
+    'Oxford University Press',
+  ][i % 5],
+  publicationYear: 1950 + (i % 70),
+  category: [
+    'Fiction',
+    'Classic',
+    'Science Fiction',
+    'Romance',
+    'Mystery',
+    'Biography',
+    'History',
+    'Fantasy',
+    'Science',
+    'Literature',
+  ][i % 10],
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc id aliquam tincidunt, nunc risus tincidunt nunc, eu aliquam magna nunc eu magna.',
+  status: [
+    BookStatus.Available,
+    BookStatus.Available,
+    BookStatus.Available,
+    BookStatus.Checked_Out,
+    BookStatus.Reserved,
+    BookStatus.Under_Maintenance,
+  ][i % 6] as BookStatus,
+  condition: [
+    BookCondition.New,
+    BookCondition.Good,
+    BookCondition.Fair,
+    BookCondition.Poor,
+  ][i % 4] as BookCondition,
+  location: `Section ${String.fromCharCode(65 + (i % 26))}, Shelf ${Math.floor(i / 5) + 1}`,
+  coverImage: `https://picsum.photos/seed/${i + 1}/200/300`,
+  quantity: Math.floor(Math.random() * 5) + 1,
+  availableQuantity: Math.floor(Math.random() * 5) + 1,
+  schoolId: i % 2 === 0 ? '1' : '2',
+  createdAt: new Date(Date.now() - Math.random() * 10000000000).toISOString(),
+  updatedAt: new Date(Date.now() - Math.random() * 1000000000).toISOString(),
+}));
+
+// Mock users data
+export const mockUsers: User[] = [
+  {
+    id: '1',
+    name: 'Admin User',
+    email: 'admin@shelftrack.com',
+    role: Role.Admin,
+    schoolId: '1',
+  },
+  {
+    id: '2',
+    name: 'Staff User',
+    email: 'staff@shelftrack.com',
+    role: Role.Staff,
+    schoolId: '1',
+  },
+  {
+    id: '3',
+    name: 'Teacher User',
+    email: 'teacher@shelftrack.com',
+    role: Role.Teacher,
+    schoolId: '2',
+  },
+];
+
+// Mock schools data
+export const mockSchools: School[] = [
+  {
+    id: '1',
+    name: 'Highland Elementary',
+    address: '123 Main St',
+    city: 'Highland',
+    state: 'CA',
+    zipCode: '92346',
+    phone: '(555) 123-4567',
+    email: 'info@highland.edu',
+    website: 'www.highland.edu',
+    createdAt: new Date(Date.now() - 10000000000).toISOString(),
+    updatedAt: new Date(Date.now() - 1000000000).toISOString(),
+  },
+  {
+    id: '2',
+    name: 'Lincoln Middle School',
+    address: '456 Oak Ave',
+    city: 'Lincoln',
+    state: 'CA',
+    zipCode: '92345',
+    phone: '(555) 987-6543',
+    email: 'info@lincolnms.edu',
+    website: 'www.lincolnms.edu',
+    createdAt: new Date(Date.now() - 8000000000).toISOString(),
+    updatedAt: new Date(Date.now() - 500000000).toISOString(),
+  },
+];
